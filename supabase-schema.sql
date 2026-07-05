@@ -44,12 +44,18 @@ INSERT INTO categories (name, slug, sort_order) VALUES
   ('点外卖', 'takeout', 2),
   ('出去吃', 'dine-out', 3);
 
--- 7. 创建图片存储桶（公开）
+-- 7. 删除旧的存储策略（避免重复运行报错）
+DROP POLICY IF EXISTS "允许所有人读取图片" ON storage.objects;
+DROP POLICY IF EXISTS "允许所有人上传图片" ON storage.objects;
+DROP POLICY IF EXISTS "允许所有人更新图片" ON storage.objects;
+DROP POLICY IF EXISTS "允许所有人删除图片" ON storage.objects;
+
+-- 8. 创建图片存储桶（公开）
 INSERT INTO storage.buckets (id, name, public)
 VALUES ('dish-images', 'dish-images', true)
 ON CONFLICT (id) DO NOTHING;
 
--- 8. 允许所有人操作图片
+-- 9. 允许所有人操作图片
 CREATE POLICY "允许所有人读取图片" ON storage.objects FOR SELECT USING (bucket_id = 'dish-images');
 CREATE POLICY "允许所有人上传图片" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'dish-images');
 CREATE POLICY "允许所有人更新图片" ON storage.objects FOR UPDATE USING (bucket_id = 'dish-images');
