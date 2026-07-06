@@ -5,19 +5,26 @@ import type { Dish } from "@/lib/db";
 
 type Props = {
   dish: Dish & { notes?: string | null };
-  theme: {
-    emptyBg: string;
-    emptyText: string;
-  };
 };
 
-export default function DishCard({ dish, theme }: Props) {
+export default function DishCard({ dish }: Props) {
   const notes = (dish as any).notes as string | undefined;
 
   return (
-    <div className="group relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-[0_2px_15px_rgba(244,114,182,0.08)] hover:shadow-[0_8px_30px_rgba(244,114,182,0.16)] hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-pointer">
+    <div
+      className="group relative bg-white/75 backdrop-blur-sm rounded-[20px] overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-0.5"
+      style={{
+        boxShadow: "0 4px 16px rgba(217, 124, 150, 0.06)",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 32px rgba(217, 124, 150, 0.10)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(217, 124, 150, 0.06)";
+      }}
+    >
       {/* 图片区域 */}
-      <div className="aspect-square bg-gradient-to-br from-pink-50 to-orange-50 flex items-center justify-center overflow-hidden">
+      <div className="aspect-square bg-gradient-to-br from-[#FFF7F3] to-[#F8D7DF]/40 flex items-center justify-center overflow-hidden">
         {dish.image_url ? (
           <DishImage
             src={dish.image_url}
@@ -25,7 +32,7 @@ export default function DishCard({ dish, theme }: Props) {
             className="w-full h-full group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
-          <div className="flex flex-col items-center gap-1 opacity-40 group-hover:opacity-60 transition-opacity">
+          <div className="flex flex-col items-center gap-1 opacity-30 group-hover:opacity-45 transition-opacity">
             <span className="text-5xl">🍽️</span>
           </div>
         )}
@@ -33,18 +40,28 @@ export default function DishCard({ dish, theme }: Props) {
 
       {/* 文字区域 */}
       <div className="p-3 text-center">
-        <h4 className="font-semibold text-gray-700 text-sm truncate group-hover:text-pink-600 transition-colors">
+        <h4
+          className="font-medium text-sm truncate transition-colors duration-200"
+          style={{ color: "#3E2A32" }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLElement).style.color = "#D97C96";
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLElement).style.color = "#3E2A32";
+          }}
+        >
           {dish.name}
         </h4>
         {notes && (
-          <p className="text-xs text-gray-400 mt-0.5 truncate">{notes}</p>
+          <p className="text-xs text-[#B5A3AA] mt-0.5 truncate">{notes}</p>
         )}
       </div>
 
-      {/* 悬浮光泽效果 */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+      {/* 悬浮光泽 */}
+      <div
+        className="absolute inset-0 rounded-[20px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         style={{
-          background: "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%)",
+          background: "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 50%)",
         }}
       />
     </div>

@@ -2,17 +2,22 @@
 
 /* ===== CSS 变量 ===== */
 :root {
-  --pink: #f472b6;
-  --pink-light: #fce7f3;
-  --pink-dark: #db2777;
-  --orange: #fb923c;
-  --orange-light: #fff7ed;
-  --orange-dark: #ea580c;
-  --peach: #fda4af;
-  --cream: #fffbf5;
-  --rose: #f43f5e;
-  --card-shadow: 0 2px 12px rgba(244, 114, 182, 0.10);
-  --card-shadow-hover: 0 8px 30px rgba(244, 114, 182, 0.18);
+  --pink: #D97C96;
+  --pink-soft: #EFA4B8;
+  --pink-light: #F8D7DF;
+  --peach: #FFF7F3;
+  --warm-cream: #F6E7DD;
+  --rose: #C16B83;
+  --text-primary: #3E2A32;
+  --text-secondary: #8B7B82;
+  --text-muted: #B5A3AA;
+  --bg-soft: rgba(255, 255, 255, 0.72);
+  --border-soft: rgba(239, 164, 184, 0.22);
+  --shadow-sm: 0 4px 12px rgba(217, 124, 150, 0.06);
+  --shadow-md: 0 12px 32px rgba(217, 124, 150, 0.08);
+  --shadow-lg: 0 8px 18px rgba(217, 124, 150, 0.18);
+  --radius-lg: 24px;
+  --radius-xl: 28px;
 }
 
 /* ===== 全局基础 ===== */
@@ -21,51 +26,60 @@ html {
 }
 
 body {
-  background: linear-gradient(160deg, #fff5f5 0%, #fffbf0 30%, #fef2f2 60%, #fff7ed 100%);
+  background: linear-gradient(135deg, #fff8f3 0%, #fff1f6 50%, #fdf7ec 100%);
   background-attachment: fixed;
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  color: #4a3728;
+  font-family: "LXGW WenKai GB", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 400;
+  color: var(--text-primary);
   position: relative;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== 背景浮动装饰 ===== */
+/* ===== 标题字重控制 ===== */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ===== 背景浮动光晕 ===== */
 body::before {
   content: "";
   position: fixed;
   top: -120px;
   right: -80px;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(253, 164, 175, 0.12) 0%, transparent 70%);
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(248, 215, 223, 0.25) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
-  animation: float-blob 12s ease-in-out infinite;
+  animation: float-blob 14s ease-in-out infinite;
 }
 
 body::after {
   content: "";
   position: fixed;
   bottom: -100px;
-  left: -60px;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(251, 146, 60, 0.10) 0%, transparent 70%);
+  left: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(246, 231, 221, 0.30) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
-  animation: float-blob 15s ease-in-out infinite reverse;
+  animation: float-blob 18s ease-in-out infinite reverse;
 }
 
 @keyframes float-blob {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -20px) scale(1.05); }
-  66% { transform: translate(-15px, 15px) scale(0.95); }
+  33% { transform: translate(40px, -24px) scale(1.04); }
+  66% { transform: translate(-20px, 18px) scale(0.96); }
 }
 
-/* ===== 浮动爱心装饰 ===== */
+/* ===== 浮动装饰 ===== */
 .floating-decorations {
   position: fixed;
   inset: 0;
@@ -77,21 +91,21 @@ body::after {
 .floating-decorations span {
   position: absolute;
   display: block;
-  opacity: 0.06;
-  animation: float-up 20s linear infinite;
-  font-size: 24px;
+  opacity: 0.04;
+  animation: float-up 24s linear infinite;
+  font-size: 22px;
 }
 
-.floating-decorations span:nth-child(1) { left: 5%;  bottom: -40px; animation-delay: 0s;   font-size: 28px; }
-.floating-decorations span:nth-child(2) { left: 15%; bottom: -40px; animation-delay: 3s;  font-size: 20px; }
-.floating-decorations span:nth-child(3) { left: 25%; bottom: -40px; animation-delay: 6s;  font-size: 32px; }
-.floating-decorations span:nth-child(4) { left: 40%; bottom: -40px; animation-delay: 9s;  font-size: 22px; }
-.floating-decorations span:nth-child(5) { left: 55%; bottom: -40px; animation-delay: 2s;  font-size: 26px; }
-.floating-decorations span:nth-child(6) { left: 65%; bottom: -40px; animation-delay: 7s;  font-size: 18px; }
-.floating-decorations span:nth-child(7) { left: 75%; bottom: -40px; animation-delay: 11s; font-size: 30px; }
-.floating-decorations span:nth-child(8) { left: 85%; bottom: -40px; animation-delay: 4s;  font-size: 24px; }
-.floating-decorations span:nth-child(9) { left: 92%; bottom: -40px; animation-delay: 8s;  font-size: 20px; }
-.floating-decorations span:nth-child(10){ left: 10%; bottom: -40px; animation-delay: 14s; font-size: 28px; }
+.floating-decorations span:nth-child(1) { left: 5%;  bottom: -40px; animation-delay: 0s;   font-size: 26px; }
+.floating-decorations span:nth-child(2) { left: 15%; bottom: -40px; animation-delay: 3s;  font-size: 18px; }
+.floating-decorations span:nth-child(3) { left: 25%; bottom: -40px; animation-delay: 6s;  font-size: 28px; }
+.floating-decorations span:nth-child(4) { left: 38%; bottom: -40px; animation-delay: 9s;  font-size: 20px; }
+.floating-decorations span:nth-child(5) { left: 52%; bottom: -40px; animation-delay: 2s;  font-size: 24px; }
+.floating-decorations span:nth-child(6) { left: 64%; bottom: -40px; animation-delay: 7s;  font-size: 18px; }
+.floating-decorations span:nth-child(7) { left: 74%; bottom: -40px; animation-delay: 11s; font-size: 28px; }
+.floating-decorations span:nth-child(8) { left: 83%; bottom: -40px; animation-delay: 4s;  font-size: 22px; }
+.floating-decorations span:nth-child(9) { left: 90%; bottom: -40px; animation-delay: 8s;  font-size: 18px; }
+.floating-decorations span:nth-child(10){ left: 10%; bottom: -40px; animation-delay: 14s; font-size: 26px; }
 
 @keyframes float-up {
   0% {
@@ -99,10 +113,10 @@ body::after {
     opacity: 0;
   }
   5% {
-    opacity: 0.07;
+    opacity: 0.05;
   }
   90% {
-    opacity: 0.07;
+    opacity: 0.05;
   }
   100% {
     transform: translateY(-100vh) rotate(360deg);
@@ -112,21 +126,52 @@ body::after {
 
 /* ===== 自定义滚动条 ===== */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(244, 114, 182, 0.3);
-  border-radius: 10px;
+  background: rgba(217, 124, 150, 0.18);
+  border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(244, 114, 182, 0.5);
+  background: rgba(217, 124, 150, 0.35);
 }
 
-/* ===== 选择文字颜色 ===== */
+/* ===== 选中文字颜色 ===== */
 ::selection {
-  background: rgba(244, 114, 182, 0.2);
-  color: var(--pink-dark);
+  background: rgba(239, 164, 184, 0.2);
+  color: var(--rose);
+}
+
+/* ===== 统一容器 ===== */
+.page-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+/* ===== 卡片通用 ===== */
+.card-soft {
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+}
+
+/* ===== 按钮通用 ===== */
+.btn-primary {
+  background: linear-gradient(135deg, #EFA4B8, #D97C96);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 9999px;
+  box-shadow: 0 8px 18px rgba(217, 124, 150, 0.18);
+  transition: all 0.25s ease;
+  text-align: center;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #E892A9, #C96B87);
+  box-shadow: 0 12px 24px rgba(217, 124, 150, 0.28);
+  transform: translateY(-1px);
 }

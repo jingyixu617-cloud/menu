@@ -44,7 +44,7 @@ export default function DishImage({ src, alt, className = "" }: Props) {
 
       {/* 图片加载前的骨架占位 */}
       {!loaded && (
-        <div className="absolute inset-0 bg-gradient-to-br from-pink-100 to-orange-100 animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#FFF7F3] to-[#F8D7DF]/40 animate-pulse" />
       )}
     </>
   );

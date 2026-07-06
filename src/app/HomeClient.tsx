@@ -12,49 +12,53 @@ type Props = {
 export default function HomeClient({ initialCategories, initialError }: Props) {
   if (initialError) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 page-container">
         <span className="text-6xl">😢</span>
-        <p className="text-rose-400">加载失败: {initialError}</p>
+        <p className="text-[#C16B83] text-sm">加载失败: {initialError}</p>
       </div>
     );
   }
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8 pb-20">
+    <div className="page-container pb-20">
       {/* 头部 */}
-      <div className="text-center mb-10">
-        <p className="text-sm tracking-widest text-pink-400/70 mb-2">
+      <div className="text-center mb-12">
+        <p className="text-sm tracking-[0.15em] text-[#B5A3AA] mb-2">
           ✨ 我们的美食小本本 ✨
         </p>
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-rose-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+        <h1 className="text-4xl font-semibold bg-gradient-to-r from-[#D97C96] via-[#C16B83] to-[#E8A87C] bg-clip-text text-transparent">
           今天吃什么 💕
         </h1>
-        <p className="text-gray-400 text-xs mt-2">
+        <p className="text-[#B5A3AA] text-xs mt-2.5">
           做饭 · 外卖 · 出去吃，选一个吧
         </p>
         <Link
           href="/admin"
-          className="inline-block mt-4 px-5 py-2 bg-gradient-to-r from-pink-400 to-rose-400 text-white rounded-full hover:from-pink-500 hover:to-rose-500 transition-all text-sm font-medium shadow-lg shadow-pink-200/50 hover:shadow-xl hover:shadow-pink-300/50 hover:-translate-y-0.5"
+          className="inline-block mt-5 px-6 py-2.5 bg-gradient-to-r from-[#EFA4B8] to-[#D97C96] text-white rounded-full hover:from-[#E892A9] hover:to-[#C96B87] transition-all text-sm font-medium"
+          style={{ boxShadow: "0 6px 16px rgba(217, 124, 150, 0.16)" }}
         >
           ✏️ 管理菜品
         </Link>
       </div>
 
-      {/* 三个分类区域 */}
+      {/* 分类区域 */}
       {initialCategories.length === 0 ? (
-        <div className="text-center py-20">
+        <div className="text-center py-20 rounded-[24px] bg-white/70 border border-[rgba(239,164,184,0.18)]"
+          style={{ boxShadow: "0 12px 32px rgba(217, 124, 150, 0.05)" }}
+        >
           <div className="flex justify-center gap-3 mb-4">
             <span className="text-5xl">🍜</span>
             <span className="text-5xl">🍕</span>
             <span className="text-5xl">🍣</span>
           </div>
-          <p className="text-gray-400 text-lg mb-1">还没有菜品哦</p>
-          <p className="text-pink-300/80 text-sm mb-6">
+          <p className="text-[#8B7B82] text-base mb-1">还没有菜品哦</p>
+          <p className="text-[#B5A3AA] text-sm mb-6">
             点击上方「管理菜品」开始记录我们的美食吧 💕
           </p>
           <Link
             href="/admin"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-pink-400 to-rose-400 text-white rounded-full hover:from-pink-500 hover:to-rose-500 transition-all shadow-lg shadow-pink-200/50"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-[#EFA4B8] to-[#D97C96] text-white rounded-full hover:from-[#E892A9] hover:to-[#C96B87] transition-all text-sm font-medium"
+            style={{ boxShadow: "0 6px 16px rgba(217, 124, 150, 0.16)" }}
           >
             去添加
           </Link>
@@ -64,6 +68,6 @@ export default function HomeClient({ initialCategories, initialError }: Props) {
           <CategorySection key={cat.id} category={cat} />
         ))
       )}
-    </main>
+    </div>
   );
 }

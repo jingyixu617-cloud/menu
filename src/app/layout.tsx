@@ -13,6 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-gb-web@latest/style.css" />
+      </head>
       <body className="relative">
         {/* 浮动装饰 */}
         <div className="floating-decorations" aria-hidden="true">
