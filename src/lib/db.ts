@@ -5,6 +5,7 @@ export type Dish = {
   category_id: string;
   name: string;
   image_url: string | null;
+  notes?: string | null;
   created_at: string;
 };
 
@@ -58,12 +59,13 @@ export async function getDishesByCategory(): Promise<CategoryWithDishes[]> {
 export async function addDish(
   name: string,
   category_id: string,
-  image_url: string
+  image_url: string,
+  notes?: string
 ): Promise<Dish> {
   const supabase = getSupabase();
   const { data, error } = await supabase
     .from("dishes")
-    .insert({ name, category_id, image_url })
+    .insert({ name, category_id, image_url, notes: notes || null })
     .select()
     .single();
 
@@ -76,11 +78,13 @@ export async function updateDish(
   id: string,
   name: string,
   category_id: string,
-  image_url?: string
+  image_url?: string,
+  notes?: string
 ): Promise<void> {
   const supabase = getSupabase();
-  const updates: Record<string, string> = { name, category_id };
+  const updates: Record<string, string | null> = { name, category_id };
   if (image_url) updates.image_url = image_url;
+  if (notes !== undefined) updates.notes = notes;
 
   const { error } = await supabase.from("dishes").update(updates).eq("id", id);
 

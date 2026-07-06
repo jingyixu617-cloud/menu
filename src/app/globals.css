@@ -1,2 +1,132 @@
 @import "tailwindcss";
 
+/* ===== CSS 变量 ===== */
+:root {
+  --pink: #f472b6;
+  --pink-light: #fce7f3;
+  --pink-dark: #db2777;
+  --orange: #fb923c;
+  --orange-light: #fff7ed;
+  --orange-dark: #ea580c;
+  --peach: #fda4af;
+  --cream: #fffbf5;
+  --rose: #f43f5e;
+  --card-shadow: 0 2px 12px rgba(244, 114, 182, 0.10);
+  --card-shadow-hover: 0 8px 30px rgba(244, 114, 182, 0.18);
+}
+
+/* ===== 全局基础 ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(160deg, #fff5f5 0%, #fffbf0 30%, #fef2f2 60%, #fff7ed 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #4a3728;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ===== 背景浮动装饰 ===== */
+body::before {
+  content: "";
+  position: fixed;
+  top: -120px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(253, 164, 175, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: float-blob 12s ease-in-out infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  bottom: -100px;
+  left: -60px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.10) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: float-blob 15s ease-in-out infinite reverse;
+}
+
+@keyframes float-blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-15px, 15px) scale(0.95); }
+}
+
+/* ===== 浮动爱心装饰 ===== */
+.floating-decorations {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-decorations span {
+  position: absolute;
+  display: block;
+  opacity: 0.06;
+  animation: float-up 20s linear infinite;
+  font-size: 24px;
+}
+
+.floating-decorations span:nth-child(1) { left: 5%;  bottom: -40px; animation-delay: 0s;   font-size: 28px; }
+.floating-decorations span:nth-child(2) { left: 15%; bottom: -40px; animation-delay: 3s;  font-size: 20px; }
+.floating-decorations span:nth-child(3) { left: 25%; bottom: -40px; animation-delay: 6s;  font-size: 32px; }
+.floating-decorations span:nth-child(4) { left: 40%; bottom: -40px; animation-delay: 9s;  font-size: 22px; }
+.floating-decorations span:nth-child(5) { left: 55%; bottom: -40px; animation-delay: 2s;  font-size: 26px; }
+.floating-decorations span:nth-child(6) { left: 65%; bottom: -40px; animation-delay: 7s;  font-size: 18px; }
+.floating-decorations span:nth-child(7) { left: 75%; bottom: -40px; animation-delay: 11s; font-size: 30px; }
+.floating-decorations span:nth-child(8) { left: 85%; bottom: -40px; animation-delay: 4s;  font-size: 24px; }
+.floating-decorations span:nth-child(9) { left: 92%; bottom: -40px; animation-delay: 8s;  font-size: 20px; }
+.floating-decorations span:nth-child(10){ left: 10%; bottom: -40px; animation-delay: 14s; font-size: 28px; }
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.07;
+  }
+  90% {
+    opacity: 0.07;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===== 自定义滚动条 ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(244, 114, 182, 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(244, 114, 182, 0.5);
+}
+
+/* ===== 选择文字颜色 ===== */
+::selection {
+  background: rgba(244, 114, 182, 0.2);
+  color: var(--pink-dark);
+}

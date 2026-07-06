@@ -39,7 +39,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const supabase = getSupabase();
-    const { name, category_id, image_url } = await request.json();
+    const { name, category_id, image_url, notes } = await request.json();
 
     if (!name || !category_id) {
       return NextResponse.json(
@@ -50,7 +50,7 @@ export async function POST(request: Request) {
 
     const { data, error } = await supabase
       .from("dishes")
-      .insert({ name, category_id, image_url: image_url || null })
+      .insert({ name, category_id, image_url: image_url || null, notes: notes || null })
       .select()
       .single();
 

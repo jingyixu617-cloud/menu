@@ -8,12 +8,13 @@ export async function PUT(
   try {
     const supabase = getSupabase();
     const { id } = await params;
-    const { name, category_id, image_url } = await request.json();
+    const { name, category_id, image_url, notes } = await request.json();
 
     const updates: Record<string, string | null> = {};
     if (name) updates.name = name;
     if (category_id) updates.category_id = category_id;
     if (image_url !== undefined) updates.image_url = image_url;
+    if (notes !== undefined) updates.notes = notes;
 
     const { error } = await supabase
       .from("dishes")
